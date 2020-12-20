@@ -1,25 +1,29 @@
-import React, { useState } from 'react';
-import '../styles/pages/Landing.css';
+import React, { useState } from 'react'
+import '../styles/pages/Landing.css'
 import Modal from 'react-modal'
+import Register from '../components/Register'
 
 
 export default function Landing() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <div className="container">
-      <button className="registerButton" onclick={() => setModalIsOpen(true)}>
+      <button className="registerButton" onClick={openModal}>
         <h2>Fazer Cadastro</h2>
       </button>
 
       <Modal isOpen={modalIsOpen}>
-        <h2>Modal Title</h2>
-        <p>Modal Body</p>
-        <div>
-          <button onClick={() => setModalIsOpen(false)}>Close</button>
-        </div>
+        <Register />
       </Modal>
-
 
     </div>
   )
