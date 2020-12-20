@@ -3,10 +3,16 @@ import React from 'react'
 export default function Register() {
   return (
     <form>
-      <label>First Name</label>
-      <input type="text" />
-      <label>Last Name</label>
-      <input type="text"/>
+      <label>First Name</label><br/>
+      <input type="text" /><br/><br/>
+      <label>Last Name</label><br/>
+      <input type="text"/><br/><br/>
+      <label>E-mail</label><br/>
+      <input type="text"/><br/><br/>
+      <label>Password</label><br/>
+      <input type="password"/><br/><br/>
+      <label>Confirm password</label><br/>
+      <input type="password"/><br/><br/>
     </form>
   )
 

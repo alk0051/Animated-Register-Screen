@@ -23,6 +23,9 @@ export default function Landing() {
 
       <Modal isOpen={modalIsOpen}>
         <Register />
+        <button onClick={closeModal}>
+          Fechar
+        </button>
       </Modal>
 
     </div>
