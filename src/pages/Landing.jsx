@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../styles/pages/Landing.css'
+import '../styles/Landing.css'
 import Modal from 'react-modal'
 import Register from '../components/Register'
 
@@ -21,13 +21,15 @@ export default function Landing() {
         <h2>Fazer Cadastro</h2>
       </button>
 
-      <Modal isOpen={modalIsOpen}>
-        <Register />
-        <button onClick={closeModal}>
-          Fechar
-        </button>
+      <Modal className="modal" isOpen={modalIsOpen}>
+        <div className="modal-container">
+          <Register />
+          <button onClick={closeModal}>
+            Fechar
+          </button>
+        </div>
       </Modal>
-
+      
     </div>
   )
 }
