@@ -4,11 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev:server": "ts-node-dev --respawn --transpile-only  src/index.ts"
+    "dev:server": "ts-node-dev --respawn --transpile-only  src/server.ts"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.3",
+    "mongoose": "^5.11.8",
     "ts-node-dev": "^1.1.1"
   },
   "devDependencies": {
