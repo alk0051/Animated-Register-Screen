@@ -1,5 +1,4 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import connectDB from './connection';
 import routes from './routes/routes';
 
