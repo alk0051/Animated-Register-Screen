@@ -1,32 +1,66 @@
 import User from '../models/users';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import mongoose from 'mongoose';
 
 
-interface UserController {
+export let showUsers = function showUsers(req: Request, res: Response, next: NextFunction) {
+  User.find()
+  .exec()
+  .then((results) => {
+    return res.status(200).json({
+      users: results,
+      count: results.length
+    });
+  })
+  .catch((error) => {
+    return res.status(500).json({
+      message: error.message,
+      error
+    });
+  });
+};
 
+export let createUser = async function createUser(req: Request, res: Response, next: NextFunction) {
+  let { name, email, password } = req.body;
+
+  const user = new User({
+    _id: new mongoose.Types.ObjectId(),
+    name,
+    email,
+    password
+  });
+
+  return user.save().then(result => {
+    return res.status(201).json({
+      user: result
+    });
+  })
+  .catch(error => {
+    return res.status(500).json({
+      message: error.message,
+      error
+    });
+  });
+};
+
+export let deleteUser = async function deleteUser(req: Request, res: Response, next: NextFunction) {
+  try {
+    const removedUser = await User.remove({ _id: req.params.id });
+    res.json(removedUser);
+
+  }catch (err) {
+    res.json({ message: err });
+  }
+};
+
+export let updateUser = async function updateUser(req: Request, res: Response, next: NextFunction) {
+  try {
+    const updatedUser = await User.updateOne(
+      { _id: req.params.id }, 
+      {$set : { name: req.body.name }}
+    );
+    res.json(updatedUser);
+  }catch (err) {
+    res.json({ message: err });
+  }
 }
-
-
-class UserController {
-  static show(arg0: string, show: any) {
-    throw new Error('Method not implemented.');
-  }
-  static create(arg0: string, create: any) {
-    throw new Error('Method not implemented.');
-  }
-
-
-  async show(req: Request, res: Response) {
-    const data = await User.find({});
-
-    return res.json(data);
-  }
-
-  async create(req: Request, res: Response) {
-    const data = await User.create(req.body);
-
-    return res.json(data);
-  }
-}
-
-export default UserController;

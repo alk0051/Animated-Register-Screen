@@ -1,14 +1,20 @@
-import express, { Request, Response } from 'express';
-import UserController from '../controllers/userController';
+import express from 'express';
+import bodyParser from 'body-parser';
+import { showUsers, createUser, deleteUser, updateUser } from '../controllers/userController';
+
 
 const routes = express.Router();
 
+routes.use(bodyParser.urlencoded({ extended: true }));
+routes.use(bodyParser.json());
 
-routes.get('/getUsers', UserController.show);
+routes.get('/getUsers', showUsers);
 
-routes.post('/createUser', UserController.create);
+routes.post('/createUser', createUser);
 
-routes.get('/getUser/:id');
+routes.delete('/:id', deleteUser);
+
+routes.put('/:id', updateUser);
 
 
 export default routes;

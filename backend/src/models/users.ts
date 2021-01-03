@@ -1,6 +1,14 @@
-import { Schema } from 'mongoose';
+import mongoose,{ Schema, Document } from 'mongoose';
 
-const UserSchema : any = new Schema(
+
+interface IUser extends Document {
+  name: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+}
+
+const UserSchema : Schema = new Schema(
   {
     name: {
       type: String,
@@ -21,4 +29,5 @@ const UserSchema : any = new Schema(
   }
 )
 
-export default UserSchema;
+
+export default mongoose.model<IUser>('Users', UserSchema);
