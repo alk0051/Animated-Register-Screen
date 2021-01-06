@@ -1,6 +1,7 @@
 import User from '../models/users';
 import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
+import { hash } from 'bcryptjs';
 
 
 export let showUsers = function showUsers(req: Request, res: Response, next: NextFunction) {
@@ -21,27 +22,40 @@ export let showUsers = function showUsers(req: Request, res: Response, next: Nex
 };
 
 export let createUser = async function createUser(req: Request, res: Response, next: NextFunction) {
+ 
   let { firstName, lastName, email, password } = req.body;
 
 
-  const user = new User({
-    _id: new mongoose.Types.ObjectId(),
-    firstName,
-    lastName,
-    email,
-    password
-  });
+  const emailExists = await User.findOne({ email: req.body.email });
+
+  console.log(emailExists);
+  if(emailExists) {
+    return res.status(400).json({ eror: 'Email já cadastrado.' });
+  }
+  else {
+    const hashedPassword = await hash(password, 8);
   
-  user.save().then(result => {
-    return res.status(201).json({ user: result });
-  })
-  .catch(error => {
-    return res.status(500).json({
-    message: error.message,
-    error
+    const user = new User({
+      _id: new mongoose.Types.ObjectId(),
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword
     });
-  });
+
+
+    user.save().then(result => {
+      return res.status(201).json({ user: result });
+    })
+    .catch(error => {
+      return res.status(500).json({
+      message: error.message,
+      error
+      });
+    });
+  }
 };
+
 
 export let deleteUser = async function deleteUser(req: Request, res: Response, next: NextFunction) {
   try {
