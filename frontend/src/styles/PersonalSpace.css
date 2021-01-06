@@ -1,0 +1,41 @@
+.container-wrapper-PS {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-PS {
+  text-align: center;
+  background-color: #fff;
+  width: 1000px;
+  height: 500px;
+  margin: 0;
+  margin-top: 13%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.text {
+  text-align: left;
+  margin: 5%;
+}
+
+h3 {
+  display: inline-block;
+}
+
+h4 {
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  margin: 0;
+  text-decoration: none;
+  list-style-type: none;
+
+}

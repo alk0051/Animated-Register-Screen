@@ -12,7 +12,7 @@ export let showUsers = function showUsers(req: Request, res: Response, next: Nex
       count: results.length
     });
   })
-  .catch((error) => {
+  .catch((error: Error) => {
     return res.status(500).json({
       message: error.message,
       error
@@ -21,24 +21,24 @@ export let showUsers = function showUsers(req: Request, res: Response, next: Nex
 };
 
 export let createUser = async function createUser(req: Request, res: Response, next: NextFunction) {
-  let { name, email, password } = req.body;
+  let { firstName, lastName, email, password } = req.body;
+
 
   const user = new User({
     _id: new mongoose.Types.ObjectId(),
-    name,
+    firstName,
+    lastName,
     email,
     password
   });
-
-  return user.save().then(result => {
-    return res.status(201).json({
-      user: result
-    });
+  
+  user.save().then(result => {
+    return res.status(201).json({ user: result });
   })
   .catch(error => {
     return res.status(500).json({
-      message: error.message,
-      error
+    message: error.message,
+    error
     });
   });
 };
@@ -57,7 +57,7 @@ export let updateUser = async function updateUser(req: Request, res: Response, n
   try {
     const updatedUser = await User.updateOne(
       { _id: req.params.id }, 
-      {$set : { name: req.body.name }}
+      {$set : { firstName: req.body.firstName }}
     );
     res.json(updatedUser);
   }catch (err) {

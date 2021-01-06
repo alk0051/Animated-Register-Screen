@@ -1,19 +1,62 @@
-.container {
+.container-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: block;
   margin-top: 20%;
+  justify-content: center;
+  align-items: center;
 }
 
 .registerButton {
+  background-color: #121214;
+  border: solid 2px #8257e6;
+  width: 400px;
+  height: 75px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15%;
+}
+
+.loginButton {
   background-color: #8257e6;
   width: 400px;
   height: 75px;
+  cursor: pointer;
   text-align: center;
   border: 0;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 15%;
+}
+
+.registerButton:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.loginButton:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.registerButton:hover {
+  box-shadow: 0 0 4px #fff;
+  text-shadow: 0 0 2px #fff;
+}
+
+.loginButton:hover {
+  background-color: #8257e6ad;
+  text-shadow: 0 0 2px #000;
 }
 
 h2 {
@@ -25,23 +68,52 @@ h2 {
 
 /*Modal Styles */
 .modal {
-  width: 100%;
   height: 100%;
-  font-family: 'Roboto', sans-serif;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  border: none;
   color: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
-
-.modal-container {
+.modal-container-register {
   width: 30%;
   height: 75%;
   display: flex;
   justify-content: center;
   border-radius: 3%;
-  background-color: #fafafe;
+  background-color: #121214;
   align-items: center;
+}
+
+.modal-container-login {
+  width: 30%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  border-radius: 3%;
+  background-color: #121214;
+  align-items: center;
+}
+
+.close-modal-button {
+  cursor: pointer;
+  position: absolute;
+  color: #FFF;
+  background-color: #121214;
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+  border: 0 none;
+  top: 13.5%;
+  left: 62.5%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.close-modal-button:focus {
+  outline: none;
+  box-shadow: none;
 }
