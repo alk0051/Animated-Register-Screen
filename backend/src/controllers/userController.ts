@@ -28,9 +28,8 @@ export let createUser = async function createUser(req: Request, res: Response, n
 
   const emailExists = await User.findOne({ email: req.body.email });
 
-  console.log(emailExists);
   if(emailExists) {
-    return res.status(400).json({ eror: 'Email já cadastrado.' });
+    return res.status(400).json({ error: 'Email já cadastrado.' });
   }
   else {
     const hashedPassword = await hash(password, 8);

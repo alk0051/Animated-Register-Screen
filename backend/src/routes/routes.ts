@@ -1,6 +1,7 @@
 import express from 'express';
+import userRoutes from './user.routes';
+import sessionsRoutes from './sessions.routes';
 import bodyParser from 'body-parser';
-import { showUsers, createUser, deleteUser, updateUser } from '../controllers/userController';
 
 
 const routes = express.Router();
@@ -8,13 +9,8 @@ const routes = express.Router();
 routes.use(bodyParser.urlencoded({ extended: true }));
 routes.use(bodyParser.json());
 
-routes.get('/getUsers', showUsers);
+routes.use('/users', userRoutes);
 
-routes.post('/createUser', createUser);
-
-routes.delete('/:id', deleteUser);
-
-routes.put('/:id', updateUser);
-
+routes.use('/sessions', sessionsRoutes);
 
 export default routes;
